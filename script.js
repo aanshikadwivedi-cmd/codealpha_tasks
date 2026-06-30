@@ -1,101 +1,78 @@
-const galleryImages = document.querySelectorAll(".gallery img");
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.querySelector(".lightbox-img");
-const closeBtn = document.querySelector(".close");
-const nextBtn = document.querySelector(".next");
-const prevBtn = document.querySelector(".prev");
+const display = document.getElementById("display");
+const buttons = document.querySelectorAll("button");
 
-let currentIndex = 0;
+buttons.forEach(button => {
 
-/* Open Lightbox */
+    button.addEventListener("click", () => {
 
-galleryImages.forEach((img, index) => {
-    img.addEventListener("click", () => {
-        currentIndex = index;
-        showImage();
-        lightbox.style.display = "flex";
-    });
-});
+        const value = button.innerText;
 
-/* Display Current Image */
-
-function showImage() {
-    lightboxImg.src = galleryImages[currentIndex].src;
-}
-
-/* Close */
-
-closeBtn.addEventListener("click", () => {
-    lightbox.style.display = "none";
-});
-
-/* Next */
-
-nextBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % galleryImages.length;
-    showImage();
-});
-
-/* Previous */
-
-prevBtn.addEventListener("click", () => {
-    currentIndex =
-        (currentIndex - 1 + galleryImages.length) %
-        galleryImages.length;
-    showImage();
-});
-
-/* Close on Background Click */
-
-lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
-        lightbox.style.display = "none";
-    }
-});
-
-/* Keyboard Navigation */
-
-document.addEventListener("keydown", (e) => {
-    if (lightbox.style.display === "flex") {
-
-        if (e.key === "ArrowRight") {
-            nextBtn.click();
+        if(value === "C"){
+            display.value = "";
         }
 
-        if (e.key === "ArrowLeft") {
-            prevBtn.click();
+        else if(value === "⌫"){
+            display.value = display.value.slice(0,-1);
         }
 
-        if (e.key === "Escape") {
-            lightbox.style.display = "none";
-        }
-    }
-});
+        else if(value === "="){
 
-/* Filter Images */
-
-const filterBtns = document.querySelectorAll(".filters button");
-const images = document.querySelectorAll(".gallery .image");
-
-filterBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-
-        filterBtns.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        const filter = btn.dataset.filter;
-
-        images.forEach(image => {
-
-            if (
-                filter === "all" ||
-                image.classList.contains(filter)
-            ) {
-                image.style.display = "block";
-            } else {
-                image.style.display = "none";
+            try{
+                display.value = eval(display.value);
             }
 
-        });
+            catch{
+                display.value = "Error";
+            }
+
+        }
+
+        else{
+
+            if(display.value === "Error"){
+                display.value = "";
+            }
+
+            display.value += value;
+        }
+
     });
+
+});
+
+/* Keyboard Support */
+
+document.addEventListener("keydown",(event)=>{
+
+    const key = event.key;
+
+    if((key>="0" && key<="9") ||
+       key==="+" ||
+       key==="-" ||
+       key==="*" ||
+       key==="/" ||
+       key==="."){
+
+        display.value += key;
+    }
+
+    else if(key==="Enter"){
+
+        try{
+            display.value = eval(display.value);
+        }
+        catch{
+            display.value = "Error";
+        }
+
+    }
+
+    else if(key==="Backspace"){
+        display.value = display.value.slice(0,-1);
+    }
+
+    else if(key==="Delete"){
+        display.value = "";
+    }
+
 });
