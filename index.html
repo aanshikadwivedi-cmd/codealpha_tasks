@@ -3,62 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Image Gallery</title>
+    <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>Image Gallery</h1>
+<div class="calculator">
 
-    <!-- Filter Buttons -->
-    <div class="filters">
-        <button class="active" data-filter="all">All</button>
-        <button data-filter="nature">Nature</button>
-        <button data-filter="city">City</button>
-        <button data-filter="animals">Animals</button>
-    </div>
+    <input type="text" id="display" readonly>
 
-    <!-- Gallery -->
-    <div class="gallery">
+    <div class="buttons">
 
-        <div class="image nature">
-            <img src="https://picsum.photos/id/1015/600/400" alt="">
-        </div>
+        <button class="clear">C</button>
+        <button class="delete">⌫</button>
+        <button class="operator">/</button>
+        <button class="operator">*</button>
 
-        <div class="image city">
-            <img src="https://picsum.photos/id/1011/600/400" alt="">
-        </div>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button class="operator">-</button>
 
-        <div class="image animals">
-            <img src="https://picsum.photos/id/1025/600/400" alt="">
-        </div>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button class="operator">+</button>
 
-        <div class="image nature">
-            <img src="https://picsum.photos/id/1039/600/400" alt="">
-        </div>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button class="equal">=</button>
 
-        <div class="image city">
-            <img src="https://picsum.photos/id/1043/600/400" alt="">
-        </div>
-
-        <div class="image animals">
-            <img src="https://picsum.photos/id/1074/600/400" alt="">
-        </div>
+        <button class="zero">0</button>
+        <button>.</button>
 
     </div>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <span class="close">&times;</span>
+</div>
 
-        <button class="prev">&#10094;</button>
-
-        <img class="lightbox-img" src="" alt="">
-
-        <button class="next">&#10095;</button>
-    </div>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
